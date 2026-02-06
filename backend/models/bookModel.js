@@ -1,18 +1,20 @@
 import mongoose from "mongoose";
 
-const bookSchema = mongoose.Schema(
+const bookSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      require: true,
+      required: true,
+      trim: true,
     },
     author: {
       type: String,
-      require: true,
+      required: true,
+      trim: true,
     },
     publishYear: {
       type: Number,
-      require: true,
+      required: true,
     },
   },
   { timestamps: true },
