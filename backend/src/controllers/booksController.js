@@ -26,3 +26,30 @@ export async function createBook(req, res) {
     res.status(500).json({ message: "Interval server error" });
   }
 }
+
+export async function getBookById(req, res) {
+  try {
+    const { id } = req.params;
+
+    const book = await Book.findById(id);
+    return res.status(200).json(book);
+  } catch (error) {
+    console.error("Error getting book");
+    res.status(500).send({ message: "Interval server error" });
+  }
+}
+
+export async function updateBookById(req, res) {
+  try {
+    const { id } = req.params;
+
+    const book = await Book.findByIdAndUpdate(id, req.body);
+    if (!book) {
+      res.status(404).json({ message: "Book not found" });
+    }
+    res.status(200).send({ message: "Book updated successfully" });
+  } catch (error) {
+    console.error("Error updating Book");
+    res.status(500).send({ message: "Interval server error" });
+  }
+}
