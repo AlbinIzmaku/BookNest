@@ -4,6 +4,7 @@ import axios from "axios";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import { useSnackbar } from "notistack";
+import api from "../lib/axios";
 
 const EditBook = () => {
   const [title, setTitle] = useState("");
@@ -16,8 +17,9 @@ const EditBook = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`http://localhost:5000/books/${id}`)
+    api
+      // .get(`http://localhost:5000/books/${id}`)
+      .get(`/books/${id}`)
       .then((response) => {
         setTitle(response.data.title);
         setAuthor(response.data.author);
@@ -38,8 +40,9 @@ const EditBook = () => {
       publishYear,
     };
     setLoading(true);
-    axios
-      .put(`http://localhost:5000/books/${id}`, data)
+    api
+      // .put(`http://localhost:5000/books/${id}`, data)
+      .put(`/books/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book edited successfully", { variant: "success" });

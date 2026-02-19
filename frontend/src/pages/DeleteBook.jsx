@@ -4,6 +4,7 @@ import axios from "axios";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import { useSnackbar } from "notistack";
+import api from "../lib/axios";
 
 const DeleteBook = () => {
   const [loading, setLoading] = useState(false);
@@ -13,8 +14,9 @@ const DeleteBook = () => {
 
   const handleDeleteBook = () => {
     setLoading(true);
-    axios
-      .delete(`http://localhost:5000/books/${id}`)
+    api
+      // .delete(`http://localhost:5000/books/${id}`)
+      .delete(`/books/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book delted successfully", { variant: "success" });

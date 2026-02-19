@@ -4,6 +4,7 @@ import axios from "axios";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import { useSnackbar } from "notistack";
+import api from "../lib/axios";
 
 const CreateBooks = () => {
   const [title, setTitle] = useState("");
@@ -20,8 +21,9 @@ const CreateBooks = () => {
       publishYear,
     };
     setLoading(true);
-    axios
-      .post("http://localhost:5000/books", data)
+    api
+      // .post("http://localhost:5000/books", data)
+      .post("/books", data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book Created successfully", { variant: "success" });

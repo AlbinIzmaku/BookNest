@@ -5,6 +5,7 @@ import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 import Spinner from "../components/Spinner";
 import BooksTable from "../components/home/BooksTable";
 import BooksCard from "../components/home/BooksCard";
+import api from "../lib/axios";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -13,9 +14,10 @@ const Home = () => {
 
   useEffect(() => {
     setLoading(true);
-
-    axios
-      .get("http://localhost:5000/books")
+ 
+    api
+      // .get("http://localhost:5000/books")
+      .get("/books")
       .then((response) => {
         setBooks(response.data);
         setLoading(false);
